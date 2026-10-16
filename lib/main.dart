@@ -55,3 +55,4 @@ class KulinerLokalApp extends StatelessWidget {
     );
   }
 }
+
