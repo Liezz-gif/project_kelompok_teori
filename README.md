@@ -165,11 +165,10 @@ build/app/outputs/flutter-apk/app-release.apk
 ## 👥 Tim Pengembang
 
 Proyek ini dikembangkan oleh kelompok mahasiswa:
-<<<<<<< HEAD
+
 * **Nama Tim**: Kelompok Teori Pemrograman Mobile
-=======
 * **KELOMPOK 12**: Aplikasi Pemesanan Kuliner Lokal Berbasis Flutter
->>>>>>> 1da16564cc0e6ae39a1f5f232bbda12aaf509a0e
+
 * **Repositori GitHub**: [Liezz-gif/project_kelompok_teori](https://github.com/Liezz-gif/project_kelompok_teori)
 
 ---
