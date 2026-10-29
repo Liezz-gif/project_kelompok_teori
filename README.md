@@ -1,6 +1,5 @@
 # 🍲 NgulinerLokal
 
-<<<<<<< HEAD
 > **Aplikasi Pemesanan Kuliner Lokal Khas Malang Berbasis Flutter**  
 > Dibuat untuk memenuhi tugas proyek kelompok mata kuliah Pemrograman Berbasis Objek / Mobile.
 
@@ -17,7 +16,6 @@
 
 Aplikasi ini mengintegrasikan **State Management terpusat (Provider)**, **peta interaktif (Flutter Map & OpenStreetMap)**, **pencarian alamat cerdas (Geocoding & Reverse Geocoding)**, **integrasi langsung ke Google Maps**, serta **fitur favorit dan profil dinamis**.
 
-=======
 > **Aplikasi Pemesanan Kuliner Lokal Berbasis Flutter**  
 > Dibuat untuk memenuhi tugas proyek kelompok mata kuliah Pemrograman Berbasis Objek / Mobile.
 
@@ -29,7 +27,6 @@ Aplikasi ini mengintegrasikan **State Management terpusat (Provider)**, **peta i
 
 Aplikasi ini mengintegrasikan **State Management terpusat (Provider)**, **peta interaktif (Flutter Map & OpenStreetMap)**, **pencarian alamat cerdas (Geocoding & Reverse Geocoding)**, **integrasi langsung ke Google Maps**, serta **fitur favorit dan profil dinamis**.
 
->>>>>>> 1da16564cc0e6ae39a1f5f232bbda12aaf509a0e
 ---
 
 ## ✨ Fitur-Fitur Utama
