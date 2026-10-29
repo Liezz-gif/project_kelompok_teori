@@ -15,7 +15,39 @@ class DetailScreen extends StatelessWidget {
         .firstWhere((menu) => menu.id == menuId);
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Detail Menu')),
+      appBar: AppBar(
+        title: const Text('Detail Menu'),
+        actions: [
+          Consumer<MenuProvider>(
+            builder: (ctx, menuProv, _) {
+              final isFav = menuProv.isFavorite(loadedMenu.id);
+              return IconButton(
+                icon: Icon(
+                  isFav ? Icons.favorite : Icons.favorite_border,
+                  color: isFav ? Colors.redAccent : Colors.white,
+                ),
+                tooltip: isFav ? 'Hapus dari Favorit' : 'Tambah ke Favorit',
+                onPressed: () {
+                  menuProv.toggleFavorite(loadedMenu.id);
+                  ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(
+                        isFav
+                            ? '${loadedMenu.name} dihapus dari Favorit'
+                            : '${loadedMenu.name} ditambahkan ke Favorit ❤️',
+                      ),
+                      duration: const Duration(seconds: 1),
+                      backgroundColor: const Color(0xFF4E342E),
+                    ),
+                  );
+                },
+              );
+            },
+          ),
+          const SizedBox(width: 8),
+        ],
+      ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -77,6 +109,13 @@ class DetailScreen extends StatelessWidget {
               loadedMenu.price,
               loadedMenu.name,
               loadedMenu.imageUrl,
+            );
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text('${loadedMenu.name} ditambahkan ke keranjang!', style: const TextStyle(color: Colors.white)),
+                backgroundColor: const Color(0xFF4E342E),
+                duration: const Duration(seconds: 1),
+              ),
             );
             Navigator.pop(context);
           },

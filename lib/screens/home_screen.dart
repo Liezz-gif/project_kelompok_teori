@@ -22,12 +22,13 @@ class HomeScreen extends StatelessWidget {
           children: [
             Icon(Icons.soup_kitchen),
             SizedBox(width: 8),
-            Text('Kuliner Lokal', style: TextStyle(fontWeight: FontWeight.bold)),
+            Text('NgulinerLokal', style: TextStyle(fontWeight: FontWeight.bold)),
           ],
         ),
         actions: [
           IconButton(
             icon: const Icon(Icons.receipt_long),
+            tooltip: 'Lacak Pesanan',
             onPressed: () => Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => const TrackingScreen()),
@@ -39,6 +40,7 @@ class HomeScreen extends StatelessWidget {
               children: [
                 IconButton(
                   icon: const Icon(Icons.shopping_cart_outlined),
+                  tooltip: 'Keranjang',
                   onPressed: () => Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => const CartScreen()),
@@ -94,12 +96,68 @@ class HomeScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Expanded(
-                        child: buildMenuImage(
-                          imageUrl: menus[i].imageUrl,
-                          menuId: menus[i].id,
-                          name: menus[i].name,
-                          width: double.infinity,
-                          fit: BoxFit.cover,
+                        child: Stack(
+                          children: [
+                            Positioned.fill(
+                              child: buildMenuImage(
+                                imageUrl: menus[i].imageUrl,
+                                menuId: menus[i].id,
+                                name: menus[i].name,
+                                width: double.infinity,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                            // Tombol Tambah ke Menu Favorit
+                            Positioned(
+                              top: 6,
+                              right: 6,
+                              child: Consumer<MenuProvider>(
+                                builder: (ctx, menuProv, _) {
+                                  final isFav = menuProv.isFavorite(menus[i].id);
+                                  return Material(
+                                    color: Colors.transparent,
+                                    child: InkWell(
+                                      borderRadius: BorderRadius.circular(20),
+                                      onTap: () {
+                                        menuProv.toggleFavorite(menus[i].id);
+                                        ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                                        ScaffoldMessenger.of(context).showSnackBar(
+                                          SnackBar(
+                                            content: Text(
+                                              isFav
+                                                  ? '${menus[i].name} dihapus dari Favorit'
+                                                  : '${menus[i].name} ditambahkan ke Favorit ❤️',
+                                            ),
+                                            duration: const Duration(seconds: 1),
+                                            backgroundColor: const Color(0xFF4E342E),
+                                          ),
+                                        );
+                                      },
+                                      child: Container(
+                                        padding: const EdgeInsets.all(6),
+                                        decoration: BoxDecoration(
+                                          color: Colors.white.withValues(alpha: 0.9),
+                                          shape: BoxShape.circle,
+                                          boxShadow: const [
+                                            BoxShadow(
+                                              color: Colors.black26,
+                                              blurRadius: 4,
+                                              offset: Offset(0, 1),
+                                            ),
+                                          ],
+                                        ),
+                                        child: Icon(
+                                          isFav ? Icons.favorite : Icons.favorite_border,
+                                          color: isFav ? Colors.red : Colors.grey.shade700,
+                                          size: 18,
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                },
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                       Padding(

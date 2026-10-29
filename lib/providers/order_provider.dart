@@ -6,7 +6,13 @@ class OrderProvider with ChangeNotifier {
   final List<Order> _orders = [];
   List<Order> get orders => [..._orders];
 
-  void addOrder(List<CartItem> cartProducts, double total, String address) {
+  void addOrder(
+    List<CartItem> cartProducts,
+    double total,
+    String address, {
+    double? latitude,
+    double? longitude,
+  }) {
     final timestamp = DateTime.now().millisecondsSinceEpoch.toString();
     final suffix = timestamp.length >= 6 ? timestamp.substring(timestamp.length - 6) : timestamp;
     _orders.insert(0, Order(
@@ -15,6 +21,8 @@ class OrderProvider with ChangeNotifier {
       totalAmount: total,
       products: cartProducts,
       dateTime: DateTime.now(),
+      latitude: latitude,
+      longitude: longitude,
     ));
     notifyListeners();
   }

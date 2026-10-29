@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'providers/user_provider.dart';
 import 'providers/menu_provider.dart';
 import 'providers/cart_provider.dart';
 import 'providers/order_provider.dart';
@@ -17,12 +18,13 @@ class KulinerLokalApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        ChangeNotifierProvider(create: (context) => UserProvider()),
         ChangeNotifierProvider(create: (context) => MenuProvider()),
         ChangeNotifierProvider(create: (context) => CartProvider()),
         ChangeNotifierProvider(create: (context) => OrderProvider()),
       ],
       child: MaterialApp(
-        title: 'Kuliner Lokal',
+        title: 'NgulinerLokal',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           primarySwatch: Colors.brown,
